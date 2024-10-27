@@ -4,21 +4,26 @@
     ViewData["Title"] = "Login";
 }
 
-<h2>Login</h2>
-<form method="post">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="Username" required />
-        <span asp-validation-for="Username" class="text-danger"></span>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="Password" required />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <button type="submit">Login</button>
-</form>
-@if (TempData["Message"] != null)
-{
-    <p class="text-success">@TempData["Message"]</p>
-}
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/site.js" defer></script>
+
+<div class="container">
+    <h2>Login</h2>
+    <form method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="Username" required />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="Password" required />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    @if (TempData["Message"] != null)
+    {
+        <p class="text-success">@TempData["Message"]</p>
+    }
+</div>
