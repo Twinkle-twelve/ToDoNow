@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /api/  # 示例：禁止爬虫访问 API 路径
