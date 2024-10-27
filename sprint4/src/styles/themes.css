@@ -1,0 +1,25 @@
+/* themes.css */
+
+/* 主题样式 */
+.light-theme {
+    --primary-color: #007bff;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+}
+
+.dark-theme {
+    --primary-color: #1e1e1e;
+    --background-color: #333;
+    --text-color: #f4f4f4;
+}
+
+/* 使用 CSS 变量 */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: white;
+}
