@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务列表</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>我的任务</h1>
+    
+    <select id="filter">
+        <option value="all">所有</option>
+        <option value="completed">已完成</option>
+        <option value="incomplete">未完成</option>
+    </select>
+
+    <ul id="task-list"></ul>
+
+    <h2>设置提醒</h2>
+    <input type="datetime-local" id="reminder-time" required>
+    <button id="set-reminder-btn">设置提醒</button>
+
+    <script src="tasks.js"></script>
+</body>
+</html>
