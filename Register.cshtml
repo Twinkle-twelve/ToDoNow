@@ -1,18 +1,20 @@
 @page
 @model ToDoNow.Pages.RegisterModel
 @{
-    ViewData["Title"] = "注册";
+    ViewData["Title"] = "Register";
 }
 
-<h2>注册</h2>
+<h2>Register</h2>
 <form method="post">
     <div>
-        <label for="email">电子邮件:</label>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="Email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div>
-        <label for="password">密码:</label>
+        <label for="password">Password:</label>
         <input type="password" id="password" name="Password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
-    <button type="submit">注册</button>
+    <button type="submit">Register</button>
 </form>
