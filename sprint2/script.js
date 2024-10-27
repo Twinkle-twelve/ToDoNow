@@ -8,17 +8,38 @@ document.getElementById('task-form').addEventListener('submit', function(e) {
 
     if (currentEditIndex !== null) {
         // 编辑任务
-        tasks[currentEditIndex] = { name: taskName, description: taskDescription, completed: false };
+        editTask(currentEditIndex, taskName, taskDescription);
         currentEditIndex = null;
     } else {
         // 添加任务
-        tasks.push({ name: taskName, description: taskDescription, completed: false });
+        addTask(taskName, taskDescription);
     }
 
     document.getElementById('task-form').reset();
-    renderTasks();
 });
 
+// 添加任务到后端
+function addTask(taskName, taskDescription) {
+    fetch('/api/tasks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: taskName,
+            description: taskDescription,
+            completed: false,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        tasks.push(data);
+        renderTasks();
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// 渲染任务列表
 function renderTasks() {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
@@ -40,19 +61,24 @@ function renderTasks() {
     });
 }
 
+// 切换任务完成状态
 function toggleComplete(index) {
-    tasks[index].completed = !tasks[index].completed;
-    renderTasks();
+    const taskId = tasks[index].id;
+    fetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ completed: !tasks[index].completed }),
+    })
+    .then(response => response.json())
+    .then(updatedTask => {
+        tasks[index] = updatedTask;
+        renderTasks();
+    });
 }
 
+// 编辑任务
 function editTask(index) {
     const task = tasks[index];
     document.getElementById('task-name').value = task.name;
-    document.getElementById('task-description').value = task.description;
-    currentEditIndex = index;
-}
-
-function deleteTask(index) {
-    tasks.splice(index, 1);
-    renderTasks();
-}
